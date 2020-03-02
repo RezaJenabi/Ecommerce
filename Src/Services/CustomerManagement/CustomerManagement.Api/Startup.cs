@@ -1,14 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using Infrastructure.Utilities.ActionFilter;
+using Infrastructure.Utilities.ResponseWrapper;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using FluentValidation.AspNetCore;
+using Commands.Customers;
+using CustomerManagement.Api.Configure;
 
 namespace CustomerManagement.Api
 {
@@ -24,6 +25,29 @@ namespace CustomerManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddHttpContextAccessor();
+            services.AddSqlContext(Configuration);
+            services.AddRepositories();
+            services.AddCommandsQueries();
+
+
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(new ValidatorActionFilter());
+            }).ConfigureApiBehaviorOptions(options =>
+            {
+                options.SuppressConsumesConstraintForFormFileParameters = true;
+                options.SuppressModelStateInvalidFilter = true;
+            }).AddFluentValidation(fv =>
+            {
+                fv.RegisterValidatorsFromAssemblyContaining<CreateCustomer>();
+                fv.ImplicitlyValidateChildProperties = true;
+            });
+
+
+
             services.AddControllers();
         }
 
@@ -34,6 +58,8 @@ namespace CustomerManagement.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseAPIResponseWrapperMiddleware();
 
             app.UseRouting();
 

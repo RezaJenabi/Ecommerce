@@ -3,8 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Infrastructure.Api.Extensions
+namespace CustomerManagement.Api.Configure
 {
     public static class ConfigureDbContext
     {
@@ -15,6 +18,5 @@ namespace Infrastructure.Api.Extensions
             (options => options.UseSqlServer(configuration.GetConnectionString("AppDbContextConnection")));
 
         }
-
     }
 }

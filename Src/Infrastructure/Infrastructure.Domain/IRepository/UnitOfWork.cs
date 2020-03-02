@@ -1,34 +1,29 @@
-﻿using Infrastructure.Domain.DbContext;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Domain.IRepository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public WebSiteDbContext Context { get; }
+        public DbContext Context { get; }
 
-        public UnitOfWork(WebSiteDbContext context)
+        public void BeginTransaction()
         {
-            Context = context;
+            Context.Database.BeginTransaction();
         }
+
         public void Commit()
         {
-            Context.SaveChanges();
+            Context.Database.CommitTransaction();
         }
 
         public void Dispose()
         {
             Context.Dispose();
-
         }
 
-        public void CommitAsync()
+        public void RoolBack()
         {
-            Context.SaveChangesAsync();
-        }
-
-        public void Rollback()
-        {
-            throw new System.NotImplementedException();
+            Context.Database.RollbackTransaction();
         }
     }
 }

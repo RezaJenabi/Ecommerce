@@ -4,4 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Infrastructure.Commands\Infrastructure.Commands.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Infrastructure.Domain\Infrastructure.Domain.csproj" />
+    <ProjectReference Include="..\CustomerManagement.Commands\CustomerManagement.Commands.csproj" />
+    <ProjectReference Include="..\CustomerManagement.Domain\CustomerManagement.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

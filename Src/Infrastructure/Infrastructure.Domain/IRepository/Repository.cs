@@ -166,6 +166,15 @@ namespace Infrastructure.Domain.IRepository
                 reference.Load();
         }
         #endregion
+        
+        public void SaveChanges()
+        {
+            _unitOfWork.Context.SaveChanges();
+        }
 
+        public void SaveChangesAsync()
+        {
+            _unitOfWork.Context.SaveChangesAsync();
+        }
     }
 }

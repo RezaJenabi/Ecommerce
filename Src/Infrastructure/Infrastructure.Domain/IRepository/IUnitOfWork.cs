@@ -1,15 +1,13 @@
-﻿using Infrastructure.Domain.DbContext;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infrastructure.Domain.IRepository
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork: IDisposable
     {
-        WebSiteDbContext Context { get; }
+        DbContext Context { get; }
         void Commit();
-        void CommitAsync();
-        void Rollback();
+        void RoolBack();
+        void BeginTransaction();
     }
 }

@@ -7,33 +7,23 @@ using Infrastructure.Domain.BaseEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Reflection;
 
-namespace Infrastructure.Domain.DbContext
+namespace CustomerManagement.Domain.DbContext
 {
-    public interface IDataContext
-    {
-        void BeginTransaction();
-        void Commit();
-        void Rollback();
-    }
-    public class WebSiteDbContext : Microsoft.EntityFrameworkCore.DbContext, IDataContext
+    public class CustomerManagementDbContext : Microsoft.EntityFrameworkCore.DbContext
     {
         private IDbContextTransaction _transaction;
 
-        public WebSiteDbContext(DbContextOptions<WebSiteDbContext> options)
+        public CustomerManagementDbContext(DbContextOptions<CustomerManagementDbContext> options)
             : base(options)
         { }
 
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(p => !p.IsDynamic); ;
-            foreach (var assembly in assemblies)
-            {
-                modelBuilder.RegisterAllEntities<IEntity>(assembly);
-                modelBuilder.RegisterEntityTypeConfiguration(assembly);
-            }
+            var currentAssembly = Assembly.GetExecutingAssembly();
+            modelBuilder.RegisterAllEntities<IEntity>(currentAssembly);
+            modelBuilder.RegisterEntityTypeConfiguration(currentAssembly);
             modelBuilder.AddRestrictDeleteBehaviorConvention();
             modelBuilder.AddPluralizingTableNameConvention();
             //modelBuilder.AddSequentialGuidForIdConvention();
