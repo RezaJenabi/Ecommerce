@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Helpers\Infrastructure.Helpers.csproj" />
+    <ProjectReference Include="..\Infrastructure.Utilities\Infrastructure.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

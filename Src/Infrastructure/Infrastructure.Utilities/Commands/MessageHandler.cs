@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Infrastructure.Common;
+﻿using Infrastructure.Utilities.Common;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Commands
 {

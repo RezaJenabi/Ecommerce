@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using Infrastructure.Common;
 using CustomerManagement.Commands.Resources;
+using Infrastructure.Utilities.Common;
 
 namespace Commands.Customers
 {

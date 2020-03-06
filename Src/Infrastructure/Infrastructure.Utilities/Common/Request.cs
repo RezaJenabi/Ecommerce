@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Common
+﻿namespace Infrastructure.Utilities.Common
 {
     public class Request<T> : IRequest<T> where T : Result
     {

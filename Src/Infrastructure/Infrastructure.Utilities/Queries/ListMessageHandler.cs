@@ -1,4 +1,4 @@
-﻿using Infrastructure.Common;
+﻿using Infrastructure.Utilities.Common;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

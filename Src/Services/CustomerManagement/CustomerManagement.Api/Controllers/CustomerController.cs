@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Commands.Customers;
+﻿using Commands.Customers;
 using CommandsHandler.Customers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

@@ -4,9 +4,7 @@ using Commands.Customers;
 using CustomerManagement.Domain.DbContext;
 using Domain.Models.CustomerAggregate;
 using Infrastructure.Commands;
-using Infrastructure.Common;
-using Infrastructure.Domain.IRepository;
-using MediatR;
+using Infrastructure.Utilities.Common;
 
 namespace CommandsHandler.Customers
 {

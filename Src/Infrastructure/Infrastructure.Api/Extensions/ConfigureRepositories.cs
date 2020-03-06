@@ -1,4 +1,4 @@
-﻿using Infrastructure.Domain.IRepository;
+﻿using Infrastructure.Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.Api.Extensions

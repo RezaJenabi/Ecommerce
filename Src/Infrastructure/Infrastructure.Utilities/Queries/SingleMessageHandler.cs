@@ -1,4 +1,4 @@
-﻿using Infrastructure.Common;
+﻿using Infrastructure.Utilities.Common;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Queries

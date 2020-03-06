@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Common
+﻿namespace Infrastructure.Utilities.Common
 {
     public class Result : IResult
     {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Infrastructure.Domain.BaseEntities;
-using Infrastructure.Helpers;
+using Infrastructure.Utilities.Helpers;
 
-namespace Infrastructure.Domain.IRepository
+namespace Infrastructure.Domain.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity>
          where TEntity : class, IAggregateRoot
@@ -166,7 +166,7 @@ namespace Infrastructure.Domain.IRepository
                 reference.Load();
         }
         #endregion
-        
+
         public void SaveChanges()
         {
             _unitOfWork.SaveChanges();

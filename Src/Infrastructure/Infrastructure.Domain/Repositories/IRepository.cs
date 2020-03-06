@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Infrastructure.Domain.BaseEntities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Domain.IRepository
+namespace Infrastructure.Domain.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class, IAggregateRoot
     {

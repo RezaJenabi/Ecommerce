@@ -11,6 +11,7 @@ using Infrastructure.Utilities.Extensions.ModelBuilder;
 using MediatR;
 using System.Data;
 using Infrastructure.Utilities.Extensions;
+using Infrastructure.Domain.Extensions;
 
 namespace CustomerManagement.Domain.DbContext
 {

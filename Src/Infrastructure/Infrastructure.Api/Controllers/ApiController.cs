@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Infrastructure.Domain.BaseEntities;
-using Infrastructure.Domain.IRepository;
+using Infrastructure.Domain.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
