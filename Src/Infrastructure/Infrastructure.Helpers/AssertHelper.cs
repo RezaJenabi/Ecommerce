@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Infrastructure.Utilities.Helpers
+namespace Infrastructure.Helpers
 {
     public static class AssertHelper
     {

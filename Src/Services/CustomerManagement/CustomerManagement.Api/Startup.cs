@@ -10,6 +10,8 @@ using Microsoft.Extensions.Hosting;
 using FluentValidation.AspNetCore;
 using Commands.Customers;
 using CustomerManagement.Api.Configure;
+using Domain.Models.CustomerAggregate.Events.DomainEvents;
+using Domain.Models.CustomerAggregate.Events.DomainEventHandlers;
 
 namespace CustomerManagement.Api
 {
@@ -26,7 +28,7 @@ namespace CustomerManagement.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(typeof(CustomerCreateEventHandler).Assembly);
             services.AddHttpContextAccessor();
             services.AddSqlContext(Configuration);
             services.AddRepositories();

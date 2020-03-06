@@ -1,37 +1,31 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Commands.Customers;
+using CustomerManagement.Domain.DbContext;
 using Domain.Models.CustomerAggregate;
 using Infrastructure.Commands;
 using Infrastructure.Common;
 using Infrastructure.Domain.IRepository;
+using MediatR;
 
 namespace CommandsHandler.Customers
 {
     public class CreateCustomerHandler : MessageHandler<CreateCustomer, Result>, ICreateCustomerHandler
     {
-        private readonly IRepository<Customer> _customerRepository;
-        public CreateCustomerHandler(IRepository<Customer> customerRepository)
+        private readonly CustomerManagementDbContext _customerManagmentDbcontext;
+
+        public CreateCustomerHandler(CustomerManagementDbContext customerManagmentDbcontext)
         {
-            _customerRepository = customerRepository;
+            _customerManagmentDbcontext = customerManagmentDbcontext;
         }
 
         public override async Task<Result> Handler(CreateCustomer message)
         {
-            try
-            {
-                var iitem = new Customer("erter","erert","jenabiReza@gmail.com");
-                //var customerCreated = message.Adapt<CustomerCreated>();
-                //var customer = CustomerCreated.Create(customerCreated);
-                await _customerRepository.AddAsync(iitem);
+            var customer = new Customer(message.FirstName, message.LastName, message.Email,message.IsActive);
+            await _customerManagmentDbcontext.Set<Customer>().AddAsync(customer);
+            await _customerManagmentDbcontext.SaveEntitiesAsync();
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            return new Result { Text = "OK" };
+            return new Result();
         }
     }
 

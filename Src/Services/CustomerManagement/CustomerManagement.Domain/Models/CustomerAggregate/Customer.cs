@@ -16,14 +16,32 @@ namespace Domain.Models.CustomerAggregate
 
         }
 
-        public Customer(string fistName, string lastName, string email)
+        public Customer(string fistName, string lastName, string email,bool isActive)
         {
             FirstName = fistName;
             LastName = lastName;
             Email = email;
-            //this.AddDomainEvent(new CustomerCreateEvent(this));
-
+            IsActive = isActive;
+            this.AddDomainEvent(new CustomerCreateEvent(this));
         }
 
+        public Customer(long id, string fistName, string lastName, string email, bool isActive)
+        {
+            Id = id;
+            FirstName = fistName;
+            LastName = lastName;
+            Email = email;
+            IsActive = isActive;
+        }
+
+        public void ChangeEmail(string email)
+        {
+            Email = email;
+        }
+
+        public bool Validation()
+        {
+            return true;
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Infrastructure.Utilities.Helpers;
-using Infrastructure.Utilities.Extensions;
+﻿using Infrastructure.Utilities.Extensions;
 using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Utilities.BaseManagements.SessionManagement
