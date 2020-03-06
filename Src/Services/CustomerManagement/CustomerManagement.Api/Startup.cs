@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using FluentValidation.AspNetCore;
 using Commands.Customers;
 using CustomerManagement.Api.Configure;
-using Domain.Models.CustomerAggregate.Events.DomainEvents;
 using Domain.Models.CustomerAggregate.Events.DomainEventHandlers;
 
 namespace CustomerManagement.Api
