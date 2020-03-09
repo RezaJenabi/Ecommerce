@@ -1,7 +1,9 @@
 ﻿using Commands.Customers;
 using CommandsHandler.Customers;
+using Infrastructure.Utilities.Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace CustomerManagement.Api.Controllers
 {
@@ -23,10 +25,15 @@ namespace CustomerManagement.Api.Controllers
 
 
         [HttpGet]
-        public void Get()
+        public string Get()
         {
-            _createCustomerHandler.Handler(new CreateCustomer() 
-            { LastName="reza",FirstName="jenabi",Email="jenabireza@gmail.com"  });
+            return "Hello";
+        }
+
+        [HttpPost]
+        public async Task<Result> PostAsync(CreateCustomer createCustomer)
+        {
+            return await _createCustomerHandler.Handler(createCustomer);
         }
 
     }
