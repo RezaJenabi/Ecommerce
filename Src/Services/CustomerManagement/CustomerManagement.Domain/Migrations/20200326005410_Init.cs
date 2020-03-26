@@ -2,12 +2,16 @@
 
 namespace CustomerManagement.Domain.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "CustomerManagement");
+
             migrationBuilder.CreateTable(
                 name: "Customers",
+                schema: "CustomerManagement",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
@@ -26,7 +30,8 @@ namespace CustomerManagement.Domain.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Customers",
+                schema: "CustomerManagement");
         }
     }
 }

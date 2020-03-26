@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CustomerManagement.CommandsHandler\CustomerManagement.CommandsHandler.csproj" />
+    <ProjectReference Include="..\CustomerManagement.Repository\CustomerManagement.Repository.csproj" />
   </ItemGroup>
 
 

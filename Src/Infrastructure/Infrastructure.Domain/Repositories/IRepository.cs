@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Infrastructure.Domain.BaseEntities;
 using Microsoft.EntityFrameworkCore;
@@ -40,5 +41,7 @@ namespace Infrastructure.Domain.Repositories
         Task LoadReferenceAsync<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty) where TProperty : class;
         public void SaveChanges();
         public void SaveChangesAsync();
+        public Task SaveEntitiesAsync(CancellationToken cancellationToken = default);
+
     }
 }

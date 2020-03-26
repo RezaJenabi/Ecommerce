@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.QueriesH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.Repository", "Services\CustomerManagement\CustomerManagement.Repository\CustomerManagement.Repository.csproj", "{2E3F3237-9F6C-4FA3-8B38-B34BEE0FDC15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "Services\Identity\Identity.API\Identity.API.csproj", "{3804048A-4D0A-4F61-9FD0-936116307817}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{2E3F3237-9F6C-4FA3-8B38-B34BEE0FDC15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E3F3237-9F6C-4FA3-8B38-B34BEE0FDC15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E3F3237-9F6C-4FA3-8B38-B34BEE0FDC15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3804048A-4D0A-4F61-9FD0-936116307817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3804048A-4D0A-4F61-9FD0-936116307817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3804048A-4D0A-4F61-9FD0-936116307817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3804048A-4D0A-4F61-9FD0-936116307817}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{7A57DDA8-147E-4AF5-849E-E23D384029DA} = {D925D6D3-9FDC-4800-8A04-5B47639D38CE}
 		{D6468C40-1B29-4FE2-BC70-F30AFA765EB2} = {D925D6D3-9FDC-4800-8A04-5B47639D38CE}
 		{2E3F3237-9F6C-4FA3-8B38-B34BEE0FDC15} = {D925D6D3-9FDC-4800-8A04-5B47639D38CE}
+		{3804048A-4D0A-4F61-9FD0-936116307817} = {679F0B11-684E-43FA-A1A2-6C8328FFFD9D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3BDD202-B796-4C91-B9FE-CA035D08EBFA}

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Commands.Customers;
-using CustomerManagement.Domain.DbContext;
 using Domain.Models.CustomerAggregate;
+using Domain.Models.CustomerAggregate.Repository;
 using Infrastructure.Commands;
 using Infrastructure.Utilities.Common;
 
@@ -10,18 +10,18 @@ namespace CommandsHandler.Customers
 {
     public class CreateCustomerHandler : MessageHandler<CreateCustomer, Result>, ICreateCustomerHandler
     {
-        private readonly CustomerManagementDbContext _customerManagmentDbcontext;
+        private readonly ICustomerRepository _customerRepository;
 
-        public CreateCustomerHandler(CustomerManagementDbContext customerManagmentDbcontext)
+        public CreateCustomerHandler(ICustomerRepository customerRepository)
         {
-            _customerManagmentDbcontext = customerManagmentDbcontext;
+            _customerRepository = customerRepository;
         }
 
         public override async Task<Result> Handler(CreateCustomer message)
         {
             var customer = new Customer(message.FirstName, message.LastName, message.Email,message.IsActive);
-            await _customerManagmentDbcontext.Set<Customer>().AddAsync(customer);
-            await _customerManagmentDbcontext.SaveEntitiesAsync();
+            await _customerRepository.AddAsync(customer);
+            await _customerRepository.SaveEntitiesAsync();
 
             return new Result();
         }

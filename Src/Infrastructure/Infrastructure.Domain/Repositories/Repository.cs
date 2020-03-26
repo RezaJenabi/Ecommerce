@@ -6,13 +6,15 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Infrastructure.Domain.BaseEntities;
 using Infrastructure.Utilities.Helpers;
+using Infrastructure.Domain.DataBaseContext;
+using System.Threading;
 
 namespace Infrastructure.Domain.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity>
          where TEntity : class, IAggregateRoot
     {
-        private readonly DbContext _unitOfWork;
+        private readonly DbContextBase _context;
 
         public DbSet<TEntity> Entities { get; }
         public virtual IQueryable<TEntity> Table => Entities;
@@ -20,10 +22,10 @@ namespace Infrastructure.Domain.Repositories
 
 
 
-        public Repository(DbContext unitOfWork)
+        public Repository(DbContextBase context)
         {
-            _unitOfWork = unitOfWork;
-            Entities = _unitOfWork.Set<TEntity>();
+            _context = context;
+            Entities = _context.Set<TEntity>();
         }
 
         #region Async Method
@@ -115,7 +117,7 @@ namespace Infrastructure.Domain.Repositories
         public virtual void Detach(TEntity entity)
         {
             AssertHelper.NotNull(entity, nameof(entity));
-            var entry = _unitOfWork.Entry(entity);
+            var entry = _context.Entry(entity);
             if (entry != null)
                 entry.State = EntityState.Detached;
         }
@@ -123,7 +125,7 @@ namespace Infrastructure.Domain.Repositories
         public virtual void Attach(TEntity entity)
         {
             AssertHelper.NotNull(entity, nameof(entity));
-            if (_unitOfWork.Entry(entity).State == EntityState.Detached)
+            if (_context.Entry(entity).State == EntityState.Detached)
                 Entities.Attach(entity);
         }
         #endregion
@@ -134,7 +136,7 @@ namespace Infrastructure.Domain.Repositories
         {
             Attach(entity);
 
-            var collection = _unitOfWork.Entry(entity).Collection(collectionProperty);
+            var collection = _context.Entry(entity).Collection(collectionProperty);
             if (!collection.IsLoaded)
                 await collection.LoadAsync().ConfigureAwait(false);
         }
@@ -143,7 +145,7 @@ namespace Infrastructure.Domain.Repositories
             where TProperty : class
         {
             Attach(entity);
-            var collection = _unitOfWork.Entry(entity).Collection(collectionProperty);
+            var collection = _context.Entry(entity).Collection(collectionProperty);
             if (!collection.IsLoaded)
                 collection.Load();
         }
@@ -152,7 +154,7 @@ namespace Infrastructure.Domain.Repositories
             where TProperty : class
         {
             Attach(entity);
-            var reference = _unitOfWork.Entry(entity).Reference(referenceProperty);
+            var reference = _context.Entry(entity).Reference(referenceProperty);
             if (!reference.IsLoaded)
                 await reference.LoadAsync().ConfigureAwait(false);
         }
@@ -161,7 +163,7 @@ namespace Infrastructure.Domain.Repositories
             where TProperty : class
         {
             Attach(entity);
-            var reference = _unitOfWork.Entry(entity).Reference(referenceProperty);
+            var reference = _context.Entry(entity).Reference(referenceProperty);
             if (!reference.IsLoaded)
                 reference.Load();
         }
@@ -169,12 +171,17 @@ namespace Infrastructure.Domain.Repositories
 
         public void SaveChanges()
         {
-            _unitOfWork.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void SaveChangesAsync()
         {
-            _unitOfWork.SaveChangesAsync();
+            _context.SaveChangesAsync();
+        }
+
+        public async Task SaveEntitiesAsync(CancellationToken cancellationToken = default)
+        {
+            await _context.SaveEntitiesAsync();
         }
     }
 }

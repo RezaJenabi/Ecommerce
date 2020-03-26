@@ -12,10 +12,9 @@ namespace Domain.Models.CustomerAggregate.Events.DomainEventHandlers
         {
         }
 
-        public Task Handle(CustomerCreateEvent notification, CancellationToken cancellationToken)
+        public async Task Handle(CustomerCreateEvent notification, CancellationToken cancellationToken)
         {
-            //send message
-            return null;
+            //throw new System.NotImplementedException();
         }
     }
 }

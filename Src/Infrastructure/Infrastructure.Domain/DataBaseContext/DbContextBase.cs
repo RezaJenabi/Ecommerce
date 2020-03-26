@@ -45,7 +45,7 @@ namespace Infrastructure.Domain.DataBaseContext
 
 
 
-        public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
             await _mediator.DispatchDomainEventsAsync(this);
             var result = await base.SaveChangesAsync(cancellationToken);

@@ -1,4 +1,6 @@
-﻿using Infrastructure.Domain.Repositories;
+﻿using CustomerManagement.Repository;
+using Domain.Models.CustomerAggregate.Repository;
+using Infrastructure.Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CustomerManagement.Api.Configure
@@ -7,7 +9,9 @@ namespace CustomerManagement.Api.Configure
     {
         public static void AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
         }
     }
 }

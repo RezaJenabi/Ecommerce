@@ -2,7 +2,6 @@
 using CommandsHandler.Customers;
 using Infrastructure.Utilities.Common;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace CustomerManagement.Api.Controllers
@@ -11,23 +10,13 @@ namespace CustomerManagement.Api.Controllers
     [Route("[controller]")]
     public class CustomerController : ControllerBase
     {
-        private readonly ILogger<CustomerController> _logger;
         private readonly ICreateCustomerHandler _createCustomerHandler;
 
 
         public CustomerController(
-            ILogger<CustomerController> logger,
             ICreateCustomerHandler createCustomerHandler)
         {
-            _logger = logger;
             _createCustomerHandler = createCustomerHandler;
-        }
-
-
-        [HttpGet]
-        public string Get()
-        {
-            return "Hello";
         }
 
         [HttpPost]

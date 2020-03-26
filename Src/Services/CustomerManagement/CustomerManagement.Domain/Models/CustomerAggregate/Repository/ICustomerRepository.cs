@@ -1,6 +1,8 @@
-﻿namespace Domain.Models.CustomerAggregate.Repository
+﻿using Infrastructure.Domain.Repositories;
+
+namespace Domain.Models.CustomerAggregate.Repository
 {
-    interface ICustomerRepository
+    public interface ICustomerRepository:IRepository<Customer>
     {
     }
 }
