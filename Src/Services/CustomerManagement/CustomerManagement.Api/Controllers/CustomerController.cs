@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CustomerManagement.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CustomerController : ControllerBase
     {
         private readonly ICreateCustomerHandler _createCustomerHandler;
@@ -20,8 +20,9 @@ namespace CustomerManagement.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<Result> PostAsync(CreateCustomer createCustomer)
+        public async Task<Result> Post(CreateCustomer createCustomer)
         {
+            var item  = HttpContext.Request;
             return await _createCustomerHandler.Handler(createCustomer);
         }
 
