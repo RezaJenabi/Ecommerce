@@ -11,6 +11,9 @@ using FluentValidation.AspNetCore;
 using Commands.Customers;
 using CustomerManagement.Api.Configure;
 using Domain.Models.CustomerAggregate.Events.DomainEventHandlers;
+using Microsoft.OpenApi.Models;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace CustomerManagement.Api
 {
@@ -23,7 +26,6 @@ namespace CustomerManagement.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -32,7 +34,6 @@ namespace CustomerManagement.Api
             services.AddSqlContext(Configuration);
             services.AddRepositories();
             services.AddCommandsQueries();
-
 
             services.AddControllers(options =>
             {
@@ -46,19 +47,49 @@ namespace CustomerManagement.Api
                 fv.RegisterValidatorsFromAssemblyContaining<CreateCustomer>();
                 fv.ImplicitlyValidateChildProperties = true;
             });
-
-
-
             services.AddControllers();
+
+
+
+
+            services.AddSwaggerGen(options =>
+            {
+                options.DescribeAllParametersInCamelCase();
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Customer",
+                    Version = "v1",
+                    Description = "Customer"
+                });
+
+            });
+
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var pathBase = Configuration["PATH_BASE"];
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.Map("/swagger/v1/swagger.json", b =>
+            {
+                b.Run(async x => {
+                    var json = File.ReadAllText("swagger.json");
+                    await x.Response.WriteAsync(json);
+                });
+            });
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint($"/swagger/v1/swagger.json", "Test");
+            });
+
 
             app.UseAPIResponseWrapperMiddleware();
 

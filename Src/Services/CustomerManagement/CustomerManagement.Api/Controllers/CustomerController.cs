@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CustomerManagement.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class CustomerController : ControllerBase
     {
         private readonly ICreateCustomerHandler _createCustomerHandler;

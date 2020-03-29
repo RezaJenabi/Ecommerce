@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Ocelot" Version="14.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 
