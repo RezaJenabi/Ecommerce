@@ -11,6 +11,11 @@ namespace Identity.API.IdentityJWT
         {
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("placeholder-key-that-is-long-enough-for-sha256"));
             var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
+            //Address = "http://localhost:6000/connect/token",
+            //    ClientId = "ClientId",
+            //    ClientSecret = "ClientSecret",
+            //    Scope = "SampleService"
+
             var claims = new Claim[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),

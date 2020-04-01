@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using ApiGateways.Api.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -47,6 +50,8 @@ namespace ApiGateways.Api
             });
 
             services.AddControllers();
+
+            services.AddCustomAuthentication(Configuration);
             services.AddOcelot(Configuration);
 
         }
@@ -77,6 +82,7 @@ namespace ApiGateways.Api
             app.UseOcelot().Wait();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -85,5 +91,8 @@ namespace ApiGateways.Api
                 endpoints.MapControllers();
             });
         }
+
+        
+
     }
 }

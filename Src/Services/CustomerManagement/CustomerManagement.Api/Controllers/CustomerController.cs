@@ -1,6 +1,7 @@
 ﻿using Commands.Customers;
 using CommandsHandler.Customers;
 using Infrastructure.Utilities.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace CustomerManagement.Api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
+    //[Authorize]
     public class CustomerController : ControllerBase
     {
         private readonly ICreateCustomerHandler _createCustomerHandler;
@@ -17,6 +19,12 @@ namespace CustomerManagement.Api.Controllers
             ICreateCustomerHandler createCustomerHandler)
         {
             _createCustomerHandler = createCustomerHandler;
+        }
+
+        [HttpGet]
+        public string Get()
+        {
+            return "OK";
         }
 
         [HttpPost]
