@@ -14,6 +14,10 @@ using Domain.Models.CustomerAggregate.Events.DomainEventHandlers;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System;
+using CustomerManagement.Api.Extensions;
 
 namespace CustomerManagement.Api
 {
@@ -49,9 +53,8 @@ namespace CustomerManagement.Api
             });
             services.AddControllers();
 
-
-
-
+            services.AddCustomerManagementAuthentication(Configuration);
+            
             services.AddSwaggerGen(options =>
             {
                 options.DescribeAllParametersInCamelCase();
@@ -68,8 +71,6 @@ namespace CustomerManagement.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            var pathBase = Configuration["PATH_BASE"];
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -94,9 +95,8 @@ namespace CustomerManagement.Api
             app.UseAPIResponseWrapperMiddleware();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

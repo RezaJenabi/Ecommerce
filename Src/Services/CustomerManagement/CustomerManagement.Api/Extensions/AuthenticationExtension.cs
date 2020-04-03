@@ -1,23 +1,16 @@
-﻿using IdentityServer4.AccessTokenValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ApiGateways.Api.Extensions
+namespace CustomerManagement.Api.Extensions
 {
-    public static class OcelotExtension
+    public static class AuthenticationExtension
     {
         public static IServiceCollection AddCustomerManagementAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-
+             
             var authenticationProviderKey = "CustomerManagement";
 
 

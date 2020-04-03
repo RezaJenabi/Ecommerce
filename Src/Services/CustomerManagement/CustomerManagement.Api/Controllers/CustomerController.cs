@@ -9,7 +9,7 @@ namespace CustomerManagement.Api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    //[Authorize]
+    [Authorize]
     public class CustomerController : ControllerBase
     {
         private readonly ICreateCustomerHandler _createCustomerHandler;
@@ -24,6 +24,7 @@ namespace CustomerManagement.Api.Controllers
         [HttpGet]
         public string Get()
         {
+            var item = User;
             return "OK";
         }
 

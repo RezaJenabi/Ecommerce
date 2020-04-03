@@ -51,8 +51,10 @@ namespace ApiGateways.Api
 
             services.AddControllers();
 
-            services.AddCustomAuthentication(Configuration);
+            services.AddCustomerManagementAuthentication(Configuration);
             services.AddOcelot(Configuration);
+
+
 
         }
 

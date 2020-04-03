@@ -12,7 +12,7 @@
       "UpstreamPathTemplate": "/api/{version}/c/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post" ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "OcelotKey",
+        "AuthenticationProviderKey": "CustomerManagement",
         "AllowedScopes": []
       }
 

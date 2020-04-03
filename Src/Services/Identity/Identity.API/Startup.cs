@@ -44,15 +44,17 @@ namespace Identity.API
                 {
                     cfg.RequireHttpsMetadata = true;
                     cfg.SaveToken = true;
-                    cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    cfg.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("placeholder-key-that-is-long-enough-for-sha256")),
-                        ValidateAudience = false,
-                        ValidateIssuer = false,
-                        ValidateLifetime = false,
-                        RequireExpirationTime = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetValue<string>("Auth:Secret"))),
+                        ValidateIssuer = true,
+                        ValidIssuer = Configuration.GetValue<string>("Auth:Iss"),
+                        ValidateAudience = true,
+                        ValidAudience = Configuration.GetValue<string>("Auth:Audience"),
+                        ValidateLifetime = true,
                         ClockSkew = TimeSpan.Zero,
-                        ValidateIssuerSigningKey = true
+                        RequireExpirationTime = true,
                     };
                 });
 
