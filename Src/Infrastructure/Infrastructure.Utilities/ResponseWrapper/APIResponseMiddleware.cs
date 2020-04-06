@@ -28,44 +28,42 @@ namespace Infrastructure.Utilities.ResponseWrapper
             {
                 var originalBodyStream = context.Response.Body;
 
-                using (var responseBody = new MemoryStream())
+                using var responseBody = new MemoryStream();
+                context.Response.Body = responseBody;
+
+                try
                 {
-                    context.Response.Body = responseBody;
+                    await _next.Invoke(context);
 
-                    try
+                    switch (context.Response.StatusCode)
                     {
-                        await _next.Invoke(context);
-
-                        switch (context.Response.StatusCode)
-                        {
-                            case (int)CustomHttpStatusCode.OK:
-                                {
-                                    var body = await FormatResponse(context.Response);
-                                    await HandleSuccessRequestAsync(context, body, context.Response.StatusCode);
-                                    break;
-                                }
-                            case (int)CustomHttpStatusCode.FluentValidation:
-                                {
-                                    var body = await FormatResponse(context.Response);
-                                    await HandleBadRequestValidationAsync(context, body);
-                                    break;
-                                }
-                            default:
-                                {
-                                    await HandleNotSuccessRequestAsync(context, context.Response.StatusCode);
-                                    break;
-                                }
-                        }
+                        case (int)CustomHttpStatusCode.OK:
+                            {
+                                var body = await FormatResponse(context.Response);
+                                await HandleSuccessRequestAsync(context, body, context.Response.StatusCode);
+                                break;
+                            }
+                        case (int)CustomHttpStatusCode.FluentValidation:
+                            {
+                                var body = await FormatResponse(context.Response);
+                                await HandleBadRequestValidationAsync(context, body);
+                                break;
+                            }
+                        default:
+                            {
+                                await HandleNotSuccessRequestAsync(context, context.Response.StatusCode);
+                                break;
+                            }
                     }
-                    catch (Exception ex)
-                    {
-                        await HandleExceptionAsync(context, ex);
-                    }
-                    finally
-                    {
-                        responseBody.Seek(0, SeekOrigin.Begin);
-                        await responseBody.CopyToAsync(originalBodyStream);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    await HandleExceptionAsync(context, ex);
+                }
+                finally
+                {
+                    responseBody.Seek(0, SeekOrigin.Begin);
+                    await responseBody.CopyToAsync(originalBodyStream);
                 }
             }
 
