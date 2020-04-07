@@ -4,10 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Infrastructure.Domain.BaseEntities;
+using Infrastructure.Core.BaseEntities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Domain.Repositories
+namespace Infrastructure.Core.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class, IAggregateRoot
     {

@@ -1,17 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Infrastructure.Domain.BaseEntities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Storage;
-using Infrastructure.Utilities.Extensions.ModelBuilder;
+﻿using Microsoft.EntityFrameworkCore;
 using MediatR;
-using System.Data;
-using Infrastructure.Domain.Extensions;
-using Infrastructure.Domain.DataBaseContext;
 using System.Reflection;
+using Infrastructure.Utilities.Extensions;
+using Infrastructure.Core.BaseEntities;
+using Infrastructure.Domain.DatabaseContext;
 
 namespace CustomerManagement.Domain.CustomerManagmentContext
 {

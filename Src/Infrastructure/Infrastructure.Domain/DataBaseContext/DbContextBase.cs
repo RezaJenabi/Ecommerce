@@ -2,17 +2,17 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Infrastructure.Domain.BaseEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
-using Infrastructure.Utilities.Extensions.ModelBuilder;
 using MediatR;
 using System.Data;
 using Infrastructure.Domain.Extensions;
+using Infrastructure.Utilities.Extensions;
+using Infrastructure.Core.BaseEntities;
+using Infrastructure.Core.DatabaseContext;
 
-
-namespace Infrastructure.Domain.DataBaseContext
+namespace Infrastructure.Domain.DatabaseContext
 {
     public abstract class DbContextBase : DbContext, IDbContext
     {
@@ -68,7 +68,7 @@ namespace Infrastructure.Domain.DataBaseContext
 
             try
             {
-                await SaveChangesAsync();
+                await SaveEntitiesAsync();
                 transaction.Commit();
             }
             catch
@@ -101,6 +101,7 @@ namespace Infrastructure.Domain.DataBaseContext
                 }
             }
         }
+
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
             OnBeforeSaving();
@@ -148,8 +149,8 @@ namespace Infrastructure.Domain.DataBaseContext
             var now = DateTime.UtcNow;
             var user = GetCurrentUser();
             var softDelete = entry.Entity as ISoftDelete;
-            entry.State = EntityState.Modified;
             if (softDelete == null) return;
+            entry.State = EntityState.Modified;
             softDelete.Deleted = true;
             softDelete.DeletedAt = now;
             softDelete.DeletedBy = user;
@@ -159,8 +160,5 @@ namespace Infrastructure.Domain.DataBaseContext
         {
             return "UserName";
         }
-
-
-
     }
 }

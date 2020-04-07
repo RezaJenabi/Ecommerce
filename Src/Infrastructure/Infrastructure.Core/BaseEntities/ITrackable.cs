@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Infrastructure.Domain.BaseEntities
+namespace Infrastructure.Core.BaseEntities
 {
     public interface ITrackable
     {

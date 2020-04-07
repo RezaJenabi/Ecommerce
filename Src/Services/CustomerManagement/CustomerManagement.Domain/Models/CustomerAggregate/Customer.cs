@@ -1,5 +1,5 @@
 ﻿using Domain.Models.CustomerAggregate.Events.DomainEvents;
-using Infrastructure.Domain.BaseEntities;
+using Infrastructure.Core.BaseEntities;
 
 namespace Domain.Models.CustomerAggregate
 {

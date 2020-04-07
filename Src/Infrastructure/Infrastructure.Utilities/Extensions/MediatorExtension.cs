@@ -1,4 +1,4 @@
-﻿using Infrastructure.Domain.BaseEntities;
+﻿using Infrastructure.Core.BaseEntities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;

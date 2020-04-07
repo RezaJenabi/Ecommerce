@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Pluralize.NET;
 
-namespace Infrastructure.Utilities.Extensions.ModelBuilder
+namespace Infrastructure.Utilities.Extensions
 {
     public static class ModelBuilderExtensions
     {
@@ -14,7 +14,7 @@ namespace Infrastructure.Utilities.Extensions.ModelBuilder
         /// Singularizin table name like Posts to Post or People to Person
         /// </summary>
         /// <param name="modelBuilder"></param>
-        public static void AddSingularizingTableNameConvention(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
+        public static void AddSingularizingTableNameConvention(this ModelBuilder modelBuilder)
         {
             var pluralizer = new Pluralizer();
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
@@ -28,7 +28,7 @@ namespace Infrastructure.Utilities.Extensions.ModelBuilder
         /// Pluralizing table name like Post to Posts or Person to People
         /// </summary>
         /// <param name="modelBuilder"></param>
-        public static void AddPluralizingTableNameConvention(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
+        public static void AddPluralizingTableNameConvention(this ModelBuilder modelBuilder)
         {
             Pluralizer pluralizer = new Pluralizer();
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
@@ -43,7 +43,7 @@ namespace Infrastructure.Utilities.Extensions.ModelBuilder
         /// </summary>
         /// <param name="modelBuilder"></param>
         /// <param name="mustBeIdentity">Set to true if you want only "Identity" guid fields that named "Id"</param>
-        public static void AddSequentialGuidForIdConvention(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
+        public static void AddSequentialGuidForIdConvention(this ModelBuilder modelBuilder)
         {
             const string defaultValueSql = "NEWSEQUENTIALID()";
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
@@ -63,7 +63,7 @@ namespace Infrastructure.Utilities.Extensions.ModelBuilder
         /// <param name="propertyName">Name of property wants to set DefaultValueSql for</param>
         /// <param name="propertyType">Type of property wants to set DefaultValueSql for </param>
         /// <param name="defaultValueSql">DefaultValueSql like "NEWSEQUENTIALID()"</param>
-        public static void AddDefaultValueSqlConvention(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, string propertyName, Type propertyType, string defaultValueSql)
+        public static void AddDefaultValueSqlConvention(this ModelBuilder modelBuilder, string propertyName, Type propertyType, string defaultValueSql)
         {
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
             {
@@ -77,7 +77,7 @@ namespace Infrastructure.Utilities.Extensions.ModelBuilder
         /// Set DeleteBehavior.Restrict by default for relations
         /// </summary>
         /// <param name="modelBuilder"></param>
-        public static void AddRestrictDeleteBehaviorConvention(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
+        public static void AddRestrictDeleteBehaviorConvention(this ModelBuilder modelBuilder)
         {
             IEnumerable<IMutableForeignKey> cascadeFKs = modelBuilder.Model.GetEntityTypes()
                 .SelectMany(t => t.GetForeignKeys())
@@ -91,9 +91,9 @@ namespace Infrastructure.Utilities.Extensions.ModelBuilder
         /// </summary>
         /// <param name="modelBuilder"></param>
         /// <param name="assemblies">Assemblies contains Entities</param>
-        public static void RegisterEntityTypeConfiguration(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, params Assembly[] assemblies)
+        public static void RegisterEntityTypeConfiguration(this ModelBuilder modelBuilder, params Assembly[] assemblies)
         {
-            MethodInfo applyGenericMethod = typeof(Microsoft.EntityFrameworkCore.ModelBuilder).GetMethods().First(m => m.Name == nameof(Microsoft.EntityFrameworkCore.ModelBuilder.ApplyConfiguration));
+            MethodInfo applyGenericMethod = typeof(ModelBuilder).GetMethods().First(m => m.Name == nameof(ModelBuilder.ApplyConfiguration));
 
             IEnumerable<Type> types = assemblies.SelectMany(a => a.GetExportedTypes())
                 .Where(c => c.IsClass && !c.IsAbstract && c.IsPublic);
@@ -117,7 +117,7 @@ namespace Infrastructure.Utilities.Extensions.ModelBuilder
         /// <param name="modelBuilder"></param>
         /// <param name="baseType">Base type that Entities inherit from this</param>
         /// <param name="assemblies">Assemblies contains Entities</param>
-        public static void RegisterAllEntities<T>(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder, params Assembly[] assemblies)
+        public static void RegisterAllEntities<T>(this ModelBuilder modelBuilder, params Assembly[] assemblies)
         {
             var types = assemblies.SelectMany(a => a.GetExportedTypes())
                 .Where(c => c.IsClass && !c.IsAbstract && c.IsPublic && typeof(T).IsAssignableFrom(c));
@@ -125,7 +125,7 @@ namespace Infrastructure.Utilities.Extensions.ModelBuilder
             foreach (var type in types)
                 modelBuilder.Entity(type);
         }
-        public static void ConvertNameForSql(this Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
+        public static void ConvertNameForSql(this ModelBuilder modelBuilder)
         {
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {

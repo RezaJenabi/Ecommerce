@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Infrastructure.Domain.BaseEntities;
 using Infrastructure.Utilities.Helpers;
-using Infrastructure.Domain.DataBaseContext;
 using System.Threading;
+using Infrastructure.Core.Repositories;
+using Infrastructure.Core.BaseEntities;
+using Infrastructure.Domain.DatabaseContext;
 
 namespace Infrastructure.Domain.Repositories
 {

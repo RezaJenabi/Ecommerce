@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Domain.BaseEntities
+﻿namespace Infrastructure.Core.BaseEntities
 {
     public interface IAggregateRoot
     {
