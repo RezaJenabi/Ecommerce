@@ -4,14 +4,14 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
 
-namespace CustomerManagement.Api.Extensions
+namespace Infrastructure.Api.Authentication
 {
     public static class AuthenticationExtension
     {
         public static IServiceCollection AddCustomerManagementAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-             
-            var authenticationProviderKey = "CustomerManagement";
+
+            var authenticationProviderKey = configuration.GetValue<string>("Auth:ProviderKey");
 
 
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration.GetValue<string>("Auth:Secret")));

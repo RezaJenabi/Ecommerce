@@ -9,7 +9,7 @@ namespace CustomerManagement.Api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    [Authorize]
+   // [Authorize]
     public class CustomerController : ControllerBase
     {
         private readonly ICreateCustomerHandler _createCustomerHandler;
@@ -31,7 +31,6 @@ namespace CustomerManagement.Api.Controllers
         [HttpPost]
         public async Task<Result> Post(CreateCustomer createCustomer)
         {
-            var item  = HttpContext.Request;
             return await _createCustomerHandler.Handler(createCustomer);
         }
 
