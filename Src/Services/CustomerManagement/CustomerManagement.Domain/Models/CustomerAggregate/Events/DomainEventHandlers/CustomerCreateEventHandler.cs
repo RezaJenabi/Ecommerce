@@ -1,9 +1,9 @@
-﻿using Domain.Models.CustomerAggregate.Events.DomainEvents;
+﻿using CustomerManagement.Domain.Models.CustomerAggregate.Events.DomainEvents;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Domain.Models.CustomerAggregate.Events.DomainEventHandlers
+namespace CustomerManagement.Domain.Models.CustomerAggregate.Events.DomainEventHandlers
 {
     public class CustomerCreateEventHandler : INotificationHandler<CustomerCreateEvent>
     {

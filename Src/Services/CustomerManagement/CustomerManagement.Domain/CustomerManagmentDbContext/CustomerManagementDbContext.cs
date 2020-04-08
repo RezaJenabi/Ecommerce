@@ -5,12 +5,12 @@ using Infrastructure.Utilities.Extensions;
 using Infrastructure.Core.BaseEntities;
 using Infrastructure.Domain.DatabaseContext;
 
-namespace CustomerManagement.Domain.CustomerManagmentContext
+namespace CustomerManagement.Domain.CustomerManagmentDbContext
 {
     public class CustomerManagementDbContext : DbContextBase
     {
         public override string DefaultSchema => "CustomerManagement";
-        public CustomerManagementDbContext(DbContextOptions<CustomerManagementDbContext> options, IMediator mediator):base(options, mediator)
+        public CustomerManagementDbContext(DbContextOptions<CustomerManagementDbContext> options, IMediator mediator) : base(options, mediator)
         {
         }
 

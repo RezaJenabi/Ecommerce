@@ -8,5 +8,13 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Infrastructure.Api\Infrastructure.Api.csproj" />
+    <ProjectReference Include="..\Ordering.CommandsHandler\Ordering.CommandsHandler.csproj" />
+    <ProjectReference Include="..\Ordering.Commands\Ordering.Commands.csproj" />
+    <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
+    <ProjectReference Include="..\Ordering.Repository\Ordering.Repository.csproj" />
+  </ItemGroup>
+
 
 </Project>

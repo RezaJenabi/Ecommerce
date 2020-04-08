@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Commands.Customers;
-using Domain.Models.CustomerAggregate;
-using Domain.Models.CustomerAggregate.Repository;
+using CustomerManagement.Commands.Customers;
+using CustomerManagement.Domain.Models.CustomerAggregate;
+using CustomerManagement.Domain.Models.CustomerAggregate.Repository;
 using Infrastructure.Commands;
 using Infrastructure.Utilities.Common;
 
-namespace CommandsHandler.Customers
+namespace CustomerManagement.CommandsHandler.Customers
 {
     public class CreateCustomerHandler : MessageHandler<CreateCustomer, Result>, ICreateCustomerHandler
     {
@@ -19,7 +19,7 @@ namespace CommandsHandler.Customers
 
         public override async Task<Result> Handler(CreateCustomer message)
         {
-            var customer = new Customer(message.FirstName, message.LastName, message.Email,message.IsActive);
+            var customer = new Customer(message.FirstName, message.LastName, message.Email, message.IsActive);
             await _customerRepository.AddAsync(customer);
             await _customerRepository.SaveEntitiesAsync();
 

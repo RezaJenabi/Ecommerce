@@ -1,4 +1,4 @@
-﻿using CommandsHandler.Customers;
+﻿using CustomerManagement.CommandsHandler.Customers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CustomerManagement.Api.Configure

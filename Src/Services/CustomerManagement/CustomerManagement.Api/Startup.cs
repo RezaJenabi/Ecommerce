@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Commands.Customers;
 using CustomerManagement.Api.Configure;
-using Domain.Models.CustomerAggregate.Events.DomainEventHandlers;
-using CustomerManagement.Domain.CustomerManagmentContext;
 using Infrastructure.Api.Configure;
 using Infrastructure.Api.Hosting;
 using System.Collections.Generic;
+using CustomerManagement.Domain.CustomerManagmentDbContext;
+using CustomerManagement.Domain.Models.CustomerAggregate.Events.DomainEventHandlers;
+using CustomerManagement.Commands.Customers;
 
 namespace CustomerManagement.Api
 {

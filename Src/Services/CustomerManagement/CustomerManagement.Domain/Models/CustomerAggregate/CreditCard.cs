@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Domain.Models.CustomerAggregate
+namespace CustomerManagement.Domain.Models.CustomerAggregate
 {
     public class CreditCard
     {

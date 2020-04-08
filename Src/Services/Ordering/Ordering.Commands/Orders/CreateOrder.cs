@@ -1,19 +1,19 @@
 ﻿using FluentValidation;
-using CustomerManagement.Commands.Resources;
 using Infrastructure.Utilities.Common;
+using Ordering.Commands.Resources;
 
-namespace CustomerManagement.Commands.Customers
+namespace Ordering.Commands.Orders
 {
-    public class CreateCustomer : Request<Result>
+    public class CreateOrder : Request<Result>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
     }
-    public class CreateCustomerValidator : AbstractValidator<CreateCustomer>
+    public class CreateOrderValidator : AbstractValidator<CreateOrder>
     {
-        public CreateCustomerValidator()
+        public CreateOrderValidator()
         {
             RuleFor(x => x.FirstName).NotNull().WithMessage(Validation.FirstNameRequired);
             RuleFor(x => x.LastName).NotNull().WithMessage(Validation.LastNameRequired);

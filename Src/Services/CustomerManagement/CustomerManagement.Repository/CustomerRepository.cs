@@ -1,6 +1,6 @@
-﻿using CustomerManagement.Domain.CustomerManagmentContext;
-using Domain.Models.CustomerAggregate;
-using Domain.Models.CustomerAggregate.Repository;
+﻿using CustomerManagement.Domain.CustomerManagmentDbContext;
+using CustomerManagement.Domain.Models.CustomerAggregate;
+using CustomerManagement.Domain.Models.CustomerAggregate.Repository;
 using Infrastructure.Domain.Repositories;
 using System.Collections.Generic;
 using System.Text;

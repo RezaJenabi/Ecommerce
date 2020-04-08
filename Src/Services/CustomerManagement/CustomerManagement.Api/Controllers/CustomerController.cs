@@ -1,5 +1,5 @@
-﻿using Commands.Customers;
-using CommandsHandler.Customers;
+﻿using CustomerManagement.Commands.Customers;
+using CustomerManagement.CommandsHandler.Customers;
 using Infrastructure.Utilities.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

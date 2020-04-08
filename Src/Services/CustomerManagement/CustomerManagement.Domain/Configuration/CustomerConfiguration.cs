@@ -1,9 +1,9 @@
-﻿using Domain.Models.CustomerAggregate;
+﻿using CustomerManagement.Domain.Models.CustomerAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace Domain.Configuration
+namespace CustomerManagement.Domain.Configuration
 {
     public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {

@@ -1,6 +1,7 @@
-﻿using MediatR;
+﻿using CustomerManagement.Domain.Models.CustomerAggregate;
+using MediatR;
 
-namespace Domain.Models.CustomerAggregate.Events.DomainEvents
+namespace CustomerManagement.Domain.Models.CustomerAggregate.Events.DomainEvents
 {
     public class CustomerCreateEvent : INotification
     {

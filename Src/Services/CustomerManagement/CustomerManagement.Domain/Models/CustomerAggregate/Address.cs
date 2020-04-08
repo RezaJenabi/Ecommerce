@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace Domain.Models.CustomerAggregate
+namespace CustomerManagement.Domain.Models.CustomerAggregate
 {
     [Owned]
     public class Address

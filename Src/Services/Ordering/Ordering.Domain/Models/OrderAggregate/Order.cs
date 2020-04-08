@@ -1,31 +1,31 @@
-﻿using CustomerManagement.Domain.Models.CustomerAggregate.Events.DomainEvents;
-using Infrastructure.Core.BaseEntities;
+﻿using Infrastructure.Core.BaseEntities;
+using Ordering.Domain.Models.OrderAggregate.Events.DomainEvents;
 
-namespace CustomerManagement.Domain.Models.CustomerAggregate
+namespace Ordering.Domain.Models.OrderAggregate
 {
 
-    public class Customer : BaseEntity, IAggregateRoot
+    public class Order : BaseEntity, IAggregateRoot
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Email { get; private set; }
         public bool IsActive { get; private set; }
 
-        private Customer()
+        private Order()
         {
 
         }
 
-        public Customer(string fistName, string lastName, string email, bool isActive)
+        public Order(string fistName, string lastName, string email, bool isActive)
         {
             FirstName = fistName;
             LastName = lastName;
             Email = email;
             IsActive = isActive;
-            AddDomainEvent(new CustomerCreateEvent(this));
+            this.AddDomainEvent(new OrderCreateEvent(this));
         }
 
-        public Customer(long id, string fistName, string lastName, string email, bool isActive)
+        public Order(long id, string fistName, string lastName, string email, bool isActive)
         {
             Id = id;
             FirstName = fistName;
