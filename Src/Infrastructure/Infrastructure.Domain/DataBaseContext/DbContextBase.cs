@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
 using MediatR;
 using System.Data;
-using Infrastructure.Domain.Extensions;
 using Infrastructure.Utilities.Extensions;
 using Infrastructure.Core.BaseEntities;
 using Infrastructure.Core.DatabaseContext;

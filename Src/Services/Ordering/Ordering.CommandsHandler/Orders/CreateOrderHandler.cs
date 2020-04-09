@@ -1,4 +1,4 @@
-﻿using Infrastructure.Commands;
+﻿using Infrastructure.Utilities.Commands;
 using Infrastructure.Utilities.Common;
 using Ordering.Commands.Orders;
 using Ordering.Domain.Models.OrderAggregate;

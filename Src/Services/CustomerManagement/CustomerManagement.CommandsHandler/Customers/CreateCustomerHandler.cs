@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using CustomerManagement.Commands.Customers;
 using CustomerManagement.Domain.Models.CustomerAggregate;
 using CustomerManagement.Domain.Models.CustomerAggregate.Repository;
-using Infrastructure.Commands;
+using Infrastructure.Utilities.Commands;
 using Infrastructure.Utilities.Common;
 
 namespace CustomerManagement.CommandsHandler.Customers

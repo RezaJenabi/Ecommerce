@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Queries
+namespace Infrastructure.Utilities.Queries
 {
     public abstract class ListMessageHandler<T, TOut>
         where T : class, IRequest<TOut>

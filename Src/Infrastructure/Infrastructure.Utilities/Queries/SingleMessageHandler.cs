@@ -1,7 +1,7 @@
 ﻿using Infrastructure.Utilities.Common;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Queries
+namespace Infrastructure.Utilities.Queries
 {
     public abstract class SingleMessageHandler<T, TOut>
         where T : class, IRequest<TOut>

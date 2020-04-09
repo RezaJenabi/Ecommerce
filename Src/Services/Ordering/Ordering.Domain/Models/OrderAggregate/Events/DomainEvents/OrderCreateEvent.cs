@@ -4,11 +4,11 @@ namespace Ordering.Domain.Models.OrderAggregate.Events.DomainEvents
 {
     public class OrderCreateEvent : INotification
     {
-        public Order Order { get; set; }
+        public Order _order { get; set; }
 
         public OrderCreateEvent(Order Order)
         {
-            Order = Order;
+            _order = Order;
         }
     }
 }

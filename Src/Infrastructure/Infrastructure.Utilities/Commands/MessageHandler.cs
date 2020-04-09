@@ -1,7 +1,7 @@
 ﻿using Infrastructure.Utilities.Common;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Commands
+namespace Infrastructure.Utilities.Commands
 {
     public abstract class MessageHandler<T, TOut>
         where T : class, IRequest<TOut>
