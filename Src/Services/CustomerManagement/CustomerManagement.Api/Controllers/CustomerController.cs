@@ -1,5 +1,6 @@
 ﻿using CustomerManagement.Commands.Customers;
 using CustomerManagement.CommandsHandler.Customers;
+using Infrastructure.Core.Security;
 using Infrastructure.Utilities.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,18 +14,22 @@ namespace CustomerManagement.Api.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICreateCustomerHandler _createCustomerHandler;
+        private readonly ICurrentRequest _currentRequest;
 
 
         public CustomerController(
-            ICreateCustomerHandler createCustomerHandler)
+            ICreateCustomerHandler createCustomerHandler,
+            ICurrentRequest currentRequest)
         {
             _createCustomerHandler = createCustomerHandler;
+            _currentRequest = currentRequest;
         }
 
         [HttpGet]
         public string Get()
         {
             var item = User;
+            var dd = _currentRequest;
             return "OK";
         }
 

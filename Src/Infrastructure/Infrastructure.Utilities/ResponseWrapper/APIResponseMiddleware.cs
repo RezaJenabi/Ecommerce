@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using EnumsNET;
+using Infrastructure.Core.Security;
 using Infrastructure.Utilities.Enums;
 using Infrastructure.Utilities.Extensions;
 using Infrastructure.Utilities.FluentValidation;
@@ -14,18 +16,20 @@ namespace Infrastructure.Utilities.ResponseWrapper
     public class APIResponseMiddleware
     {
         private readonly RequestDelegate _next;
-
-        public APIResponseMiddleware(RequestDelegate next)
+        private ICurrentRequest _currentRequest;
+        public APIResponseMiddleware(RequestDelegate next )
         {
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, ICurrentRequest currentRequest)
         {
             if (IsSwagger(context))
                 await this._next(context);
             else
             {
+                _currentRequest = currentRequest;
+                InterceptRequest(context);
                 var originalBodyStream = context.Response.Body;
 
                 using var responseBody = new MemoryStream();
@@ -200,6 +204,52 @@ namespace Infrastructure.Utilities.ResponseWrapper
         private bool IsSwagger(HttpContext context)
         {
             return context.Request.Path.StartsWithSegments("/swagger");
+        }
+
+        private void InterceptRequest(HttpContext context)
+        {
+            // var service = new ServiceCollection()
+            //     .AddScoped<CurrentRequest, CurrentRequest>();
+            //
+            // var serviceProvider = service.BuildServiceProvider();
+
+            foreach (var header in context.Request.Headers.Where(it => it.Key.ToLower().StartsWith("request")))
+            {
+                _currentRequest.Headers[header.Key.ToLower()] = header.Value;
+            }
+
+            if (!_currentRequest.HasHeader("request-gateway"))
+                //throw new Exception($"empty header detected [request-gateway]");
+
+            _currentRequest.Gateway = _currentRequest.GetEnumHeader<GatewayType>("request-gateway");
+            _currentRequest.UserSessionId = _currentRequest.GetHeader("request-client-id");
+            _currentRequest.CorrelationId = Guid.NewGuid().ToString();
+
+            if (string.IsNullOrEmpty(_currentRequest.UserSessionId))
+                //throw new Exception($"empty header detected [request-client-id]");
+
+            if (context.User.Identity.IsAuthenticated)
+            {
+                _currentRequest.UserId = int.Parse(context.User.FindFirst("sub").Value);
+                _currentRequest.UserName = context.User.FindFirst("name").Value;
+
+                switch (context.User.FindFirst("amr").Value)
+                {
+                    case "otp":
+                        _currentRequest.AuthenticationType = AuthenticationType.OtpAuthentication;
+                        break;
+                    case "password":
+                    case "pwd":
+                        _currentRequest.AuthenticationType = AuthenticationType.PasswordAuthentication;
+                        break;
+                }
+            }
+            else
+            {
+                _currentRequest.AuthenticationType = AuthenticationType.NotAuthenticated;
+            }
+
+            context.Items.Add("CoreRequest", _currentRequest);
         }
     }
 }

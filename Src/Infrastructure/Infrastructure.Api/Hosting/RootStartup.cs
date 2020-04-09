@@ -31,6 +31,7 @@ namespace Infrastructure.Api.Hosting
             services.AddMediatR(MediatRAssemblies);
             services.AddHttpContextAccessor();
             services.AddBaseRepositories();
+            services.AddCurrentRequest();
 
             services.AddControllers(options =>
             {
