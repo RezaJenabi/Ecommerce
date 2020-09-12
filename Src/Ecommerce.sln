@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{DCDE54CC-943D-4D61-8DE7-25092B5F832A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{8A2EAC51-0EBB-4D20-B645-F350A4789C70}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{FA0ABDF2-4E73-440E-B961-1EACD58D0B5E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Domain", "Infrastructure\Infrastructure.Domain\Infrastructure.Domain.csproj", "{A489D69C-FB95-47B4-B9CA-6E0BF9CBE6E5}"
@@ -49,29 +47,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouses.Api", "Services\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Core", "Infrastructure\Infrastructure.Core\Infrastructure.Core.csproj", "{5C445A05-5698-40CC-A2C5-61AD778521D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Repository", "Services\Ordering\Ordering.Repository\Ordering.Repository.csproj", "{79CF0436-6BB7-4C09-9635-345B833F10B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Repository", "Services\Ordering\Ordering.Repository\Ordering.Repository.csproj", "{79CF0436-6BB7-4C09-9635-345B833F10B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Queries", "Services\Ordering\Ordering.Queries\Ordering.Queries.csproj", "{43CD9202-F1AA-4E9C-B8E2-94DBE4687F19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Queries", "Services\Ordering\Ordering.Queries\Ordering.Queries.csproj", "{43CD9202-F1AA-4E9C-B8E2-94DBE4687F19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.QueriesHandler", "Services\Ordering\Ordering.QueriesHandler\Ordering.QueriesHandler.csproj", "{376EC453-764D-4FDA-A7B9-10D8CC0EE682}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.QueriesHandler", "Services\Ordering\Ordering.QueriesHandler\Ordering.QueriesHandler.csproj", "{376EC453-764D-4FDA-A7B9-10D8CC0EE682}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Domain", "Services\Ordering\Ordering.Domain\Ordering.Domain.csproj", "{65029AA4-E64F-4F5E-BE39-D46805B86A60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Domain", "Services\Ordering\Ordering.Domain\Ordering.Domain.csproj", "{65029AA4-E64F-4F5E-BE39-D46805B86A60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Commands", "Services\Ordering\Ordering.Commands\Ordering.Commands.csproj", "{8D311C19-A082-4E29-B2A4-C8A748AFFAD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Commands", "Services\Ordering\Ordering.Commands\Ordering.Commands.csproj", "{8D311C19-A082-4E29-B2A4-C8A748AFFAD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.CommandsHandler", "Services\Ordering\Ordering.CommandsHandler\Ordering.CommandsHandler.csproj", "{F1FFDD68-DD2A-46CD-8542-C16EBEFA3AF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.CommandsHandler", "Services\Ordering\Ordering.CommandsHandler\Ordering.CommandsHandler.csproj", "{F1FFDD68-DD2A-46CD-8542-C16EBEFA3AF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouses.Commands", "Services\Warehouses\Warehouses.Commands\Warehouses.Commands.csproj", "{5FDF6F00-5B08-4A0A-A896-1BA1CA095141}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouses.Commands", "Services\Warehouses\Warehouses.Commands\Warehouses.Commands.csproj", "{5FDF6F00-5B08-4A0A-A896-1BA1CA095141}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouses.CommandsHandler", "Services\Warehouses\Warehouses.CommandsHandler\Warehouses.CommandsHandler.csproj", "{71EEEBB8-DB61-4600-A74A-1BD4F785DB63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouses.CommandsHandler", "Services\Warehouses\Warehouses.CommandsHandler\Warehouses.CommandsHandler.csproj", "{71EEEBB8-DB61-4600-A74A-1BD4F785DB63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouses.Domain", "Services\Warehouses\Warehouses.Domain\Warehouses.Domain.csproj", "{D5C9B4FF-EB9A-4E31-AD3C-42CD58DEF1EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouses.Domain", "Services\Warehouses\Warehouses.Domain\Warehouses.Domain.csproj", "{D5C9B4FF-EB9A-4E31-AD3C-42CD58DEF1EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouses.Queries", "Services\Warehouses\Warehouses.Queries\Warehouses.Queries.csproj", "{E53E7755-C6B6-4DC1-832F-4AFCE9B92AE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouses.Queries", "Services\Warehouses\Warehouses.Queries\Warehouses.Queries.csproj", "{E53E7755-C6B6-4DC1-832F-4AFCE9B92AE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouses.QueriesHandler", "Services\Warehouses\Warehouses.QueriesHandler\Warehouses.QueriesHandler.csproj", "{05960D40-C361-4FE8-AA84-44A8D954324D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouses.QueriesHandler", "Services\Warehouses\Warehouses.QueriesHandler\Warehouses.QueriesHandler.csproj", "{05960D40-C361-4FE8-AA84-44A8D954324D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouses.Repository", "Services\Warehouses\Warehouses.Repository\Warehouses.Repository.csproj", "{4334B9FB-D6E2-4F3B-BCBE-0C006759C815}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warehouses.Repository", "Services\Warehouses\Warehouses.Repository\Warehouses.Repository.csproj", "{4334B9FB-D6E2-4F3B-BCBE-0C006759C815}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

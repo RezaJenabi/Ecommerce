@@ -45,7 +45,6 @@ namespace Infrastructure.Api.Hosting
                 fv.RegisterValidatorsFromAssemblies(RegisterFluentValidation);
                 fv.ImplicitlyValidateChildProperties = true;
             });
-            services.AddControllers();
 
             services.AddCustomerManagementAuthentication(_configuration);
 

@@ -17,7 +17,7 @@ namespace Infrastructure.Utilities.ResponseWrapper
     {
         private readonly RequestDelegate _next;
         private ICurrentRequest _currentRequest;
-        public APIResponseMiddleware(RequestDelegate next )
+        public APIResponseMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -221,33 +221,33 @@ namespace Infrastructure.Utilities.ResponseWrapper
             if (!_currentRequest.HasHeader("request-gateway"))
                 //throw new Exception($"empty header detected [request-gateway]");
 
-            _currentRequest.Gateway = _currentRequest.GetEnumHeader<GatewayType>("request-gateway");
+                _currentRequest.Gateway = _currentRequest.GetEnumHeader<GatewayType>("request-gateway");
             _currentRequest.UserSessionId = _currentRequest.GetHeader("request-client-id");
             _currentRequest.CorrelationId = Guid.NewGuid().ToString();
 
             if (string.IsNullOrEmpty(_currentRequest.UserSessionId))
                 //throw new Exception($"empty header detected [request-client-id]");
 
-            if (context.User.Identity.IsAuthenticated)
-            {
-                _currentRequest.UserId = int.Parse(context.User.FindFirst("sub").Value);
-                _currentRequest.UserName = context.User.FindFirst("name").Value;
-
-                switch (context.User.FindFirst("amr").Value)
+                if (context.User.Identity.IsAuthenticated)
                 {
-                    case "otp":
-                        _currentRequest.AuthenticationType = AuthenticationType.OtpAuthentication;
-                        break;
-                    case "password":
-                    case "pwd":
-                        _currentRequest.AuthenticationType = AuthenticationType.PasswordAuthentication;
-                        break;
+                    _currentRequest.UserId = int.Parse(context.User.FindFirst("sub").Value);
+                    _currentRequest.UserName = context.User.FindFirst("name").Value;
+
+                    switch (context.User.FindFirst("amr").Value)
+                    {
+                        case "otp":
+                            _currentRequest.AuthenticationType = AuthenticationType.OtpAuthentication;
+                            break;
+                        case "password":
+                        case "pwd":
+                            _currentRequest.AuthenticationType = AuthenticationType.PasswordAuthentication;
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                _currentRequest.AuthenticationType = AuthenticationType.NotAuthenticated;
-            }
+                else
+                {
+                    _currentRequest.AuthenticationType = AuthenticationType.NotAuthenticated;
+                }
 
             context.Items.Add("CoreRequest", _currentRequest);
         }

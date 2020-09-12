@@ -10,7 +10,7 @@ namespace CustomerManagement.Api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-   // [Authorize]
+    //[Authorize]
     public class CustomerController : ControllerBase
     {
         private readonly ICreateCustomerHandler _createCustomerHandler;
@@ -24,14 +24,24 @@ namespace CustomerManagement.Api.Controllers
             _createCustomerHandler = createCustomerHandler;
             _currentRequest = currentRequest;
         }
-
-        [HttpGet]
-        public string Get()
+        [HttpGet("GetId")]
+        public async Task<object> GetByIdAsync()
         {
-            var item = User;
-            var dd = _currentRequest;
-            return "OK";
+            return await Task.FromResult<object>(null); ;
         }
+        [HttpGet("GetId2")]
+        public object GetByIdw()
+        {
+            return null;
+        }
+        //[HttpGet]
+        //public string Get()
+        //{
+        //    return null;
+        //    var item = User;
+        //    var dd = _currentRequest;
+        //    return "OK";
+        //}
 
         [HttpPost]
         public async Task<Result> Post(CreateCustomer createCustomer)

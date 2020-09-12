@@ -1,6 +1,4 @@
-﻿using CustomerManagement.Domain.Models.CustomerAggregate;
-using Infrastructure.Core.Repositories;
-using Infrastructure.Domain.Repositories;
+﻿using Infrastructure.Core.Repositories;
 
 namespace CustomerManagement.Domain.Models.CustomerAggregate.Repository
 {

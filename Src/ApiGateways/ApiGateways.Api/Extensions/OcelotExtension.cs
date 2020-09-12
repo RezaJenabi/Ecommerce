@@ -43,6 +43,17 @@ namespace ApiGateways.Api.Extensions
             {
                 x.RequireHttpsMetadata = false;
                 x.TokenValidationParameters = tokenValidationParameters;
+                x.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                        {
+                            context.Response.Headers.Add("Token-Expired", "true");
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
             });
 
             return services;

@@ -31,7 +31,7 @@ namespace CustomerManagement.Domain.Models.CustomerAggregate
             FirstName = fistName;
             LastName = lastName;
             Email = email;
-            IsActive = isActive;
+            IsActive = isActive; 
         }
 
         public void ChangeEmail(string email)
