@@ -41,6 +41,12 @@ namespace Identity.API.IdentityJWT
                 expires: now.Add(TimeSpan.FromDays(30)),
                 signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
             );
+
+
+            //JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            //JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+            //JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
+
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
             var responseJson = new TokenResponse
             {
